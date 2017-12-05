@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Интендантство";
+	Layout = @"~\Views\Shared\_Layout.cshtml";
+}
+
+
+
+@*<div class="jumbotron">
+	<h1>Интендантство</h1>
+</div>*@
+
+<div class="row flex-xl-nowrap">
+	<div class="col-12 col-md-3 col-xl-2 bd-sidebar">
+		@Html.Action("IntendantMenu", "IntendantMenu")
+	</div>
+	<div class="row flex-xl-nowrap col-xl-8">
+		@Html.Action("GetTable", "Intendant", "bottle_table")
+	</div>
+</div>
+
+
+

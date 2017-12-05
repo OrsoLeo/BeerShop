@@ -1,0 +1,252 @@
+﻿<head>
+	<meta name="viewport" content="width=device-width" />
+	<link type="text/css" rel="stylesheet" href="../../Content/Site.css" />
+</head>
+
+<main class="col-12 col-md-9 col-xl-12 py-md-3 pl-md-5 bd-content">
+	<center>
+		<table class="table table-hover table-light">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Trade Mark</th>
+					<th scope="col">Name</th>
+					<th scope="col">Category</th>
+					<th scope="col">Bottle Capacity</th>
+				</tr>
+			</thead>
+			<tbody id="tabBody"></tbody>
+		</table>
+	</center>
+</main>
+<div  class="d-none d-xl-block col-xl-2 bd-toc">
+	<div id="editBlock">
+		<h3>Редактирование</h3>
+		<form>
+			<div class="form-row">
+				<label for="editId">ID</label>
+				<label id="editId"></label>
+			</div>
+			<div class="form-group">
+				<label for="editTm">TM</label>
+				<select id="editTm" class="form-control">
+					<option selected value="value">торговая марка</option>
+					<option>другая торговая марка</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="editBeer">Пиво</label>
+				<select id="editBeer" class="form-control">
+					<option selected value="value">Пивко</option>
+					<option>другое пивко</option>
+					<option>ущё пивко</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="editCapacity">Ёмкость</label>
+				<select id="editCapacity" class="form-control">
+					<option selected value="value">0.5</option>
+					<option>1</option>
+					<option>0.33</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="editDate">Дата розлива</label>
+				<input id="editDate" class="form-control" type="date">
+			</div>
+			<div class="form-group">
+				<label for="editPrice">Цена</label>
+				<input id="editPrice" class="form-control" type="number">
+			</div>
+		</form>
+	</div>
+	<div id="addBlock">
+		<h3>Новый объект</h3>
+		<form>
+			<div class="form-group">
+				<label for="addTm">TM</label>
+				<select id="addTm" class="form-control">
+					<option selected value="value">торговая марка</option>
+					<option>другая торговая марка</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="addBeer">Пиво</label>
+				<select id="addBeer" class="form-control">
+					<option value="value">Пивко</option>
+					<option>другое пивко</option>
+					<option>ущё пивко</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="addCapacity">Ёмкость</label>
+				<select id="addCapacity" class="form-control">
+					<option value="value">0.5</option>
+					<option>1</option>
+					<option>0.33</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="addDate">Дата розлива</label>
+				<input id="addDate" class="form-control" type="date">
+			</div>
+			<div class="form-group">
+				<label for="inputPrice">Цена</label>
+				<input id="inputPrice" class="form-control" type="number">
+			</div>
+		</form>
+	</div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        GetAll();
+
+		$("#editBlock").click(function (event) {
+            event.preventDefault();
+            Edit();
+        });
+
+        $("#addBlock").click(function (event) {
+            event.preventDefault();
+            Add();
+        });
+
+    });
+    // Получение всех книг по ajax-запросу
+    function GetAll() {
+
+        //$("#createBlock").css('display', 'block');
+        //$("#editBlock").css('display', 'none');
+        $.ajax({
+			url: '/api/BeerBottle',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                WriteResponse(data);
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        });
+    }
+ // Добавление новой книги
+    function Add() {
+        // получаем значения для добавляемой книги
+        var item = {
+            Name: $('#addName').val(),
+            Author: $('#addAuthor').val(),
+            Year: $('#addYear').val()
+        };
+
+        $.ajax({
+            url: '/api/values',
+            type: 'POST',
+            data: JSON.stringify(book),
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                GetAllBooks();
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        });
+    }
+ // Удаление книги
+    function Delete(id) {
+
+        $.ajax({
+			url: '/api/BeerBottle/' + id,
+            type: 'DELETE',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                GetAll();
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        });
+    }
+    // редактирование книги
+    function Edit() {
+        var id = $('#editId').val()
+        // получаем новые значения для редактируемой книги
+        var item = {
+			ID: $("#editId").val(),
+			//$("#editTm").val(item.TradeMark.Name);
+			//$("#editBeer").val(item.BeerEntity.Name);
+   //         $("#editCapacity").val(item.Capacity.Cap);
+			//DateOfSpill: $("#editDate").val();
+			Price: $("#editPrice").val()
+        };
+        $.ajax({
+			url: '/api/BeerBottle/' + id,
+            type: 'PUT',
+            data: JSON.stringify(item),
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                GetAll();
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        });
+    }
+ // вывод полученных данных на экран
+    function WriteResponse(data) {
+        var strResult;
+		$.each(data, function (index, item) {
+			strResult += "<tr><td>" + item.ID + "</td><td> " + item.BeerEntity.TradeMark.Name + "</td><td>" +
+			item.BeerEntity.Name + "</td><td>" + item.BeerEntity.BeerKind.Name + "</td><td>" + item.Capacity.Cap +
+			"</td><td><a id='editItem' data-item='" + item.ID + "'onclick='EditItem(this);' >Редактировать</a></td>" +
+            "<td><a id='delItem' data-item='" + item.ID + "' onclick='DeleteItem(this);' >Удалить</a></td></tr>";
+        });
+		$("#tabBody").html(strResult);
+    }
+    // обработчик удаления
+    function DeleteItem(el) {
+
+        // получаем id удаляемого объекта
+        var id = $(el).attr('data-item');
+        Delete(id);
+    }
+    // обработчик редактирования
+    function EditItem (el) {
+
+        // получаем id редактируемого объекта
+		var id = $(el).attr('data-item');
+		Get(id);
+    }
+    // вывод данных редактируемого объекта
+	function Show(item) {
+		if (item != null) {
+            $("#addBlock").css('display', 'none');
+			$("#editBlock").css('display', 'block');
+			$("#editId").val(item.ID);
+			$("#editTm").val(item.TradeMark.Name);
+			$("#editBeer").val(item.BeerEntity.Name);
+            $("#editCapacity").val(item.Capacity.Cap);
+			$("#editDate").val(item.DateOfSpill);
+			$("#editPrice").val(item.Price);
+        }
+        else {
+            alert("Невыполнимая операция");
+        }
+    }
+    // запрос объекта на редактирование
+    function Get(id) {
+
+        $.ajax({
+			url: '/api/BeerBottle/' + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function (item) {
+                Show(item);
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        });
+    }
+</script>

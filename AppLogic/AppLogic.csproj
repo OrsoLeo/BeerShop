@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{52555721-33E0-472C-88D9-C0E05D29DD1B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AppLogic</RootNamespace>
+    <AssemblyName>AppLogic</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.EF6, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.EF6.1.1.1\lib\net45\AutoMapper.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="DelegateDecompiler, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93b26a10a04705bd, processorArchitecture=MSIL">
+      <HintPath>..\packages\DelegateDecompiler.0.23.0\lib\net40-client\DelegateDecompiler.dll</HintPath>
+    </Reference>
+    <Reference Include="DelegateDecompiler.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93b26a10a04705bd, processorArchitecture=MSIL">
+      <HintPath>..\packages\DelegateDecompiler.EntityFramework.0.23.0\lib\net45\DelegateDecompiler.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Reflection, Version=1.1.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Reflection.1.1.0.0\lib\Mono.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DtoConverter\BeerEntityConvert.cs" />
+    <Compile Include="DtoConverter\BeerBottleConvert.cs" />
+    <Compile Include="DtoConverter\Converter.cs" />
+    <Compile Include="DtoConverter\ConvertetINI.cs" />
+    <Compile Include="DtoConverter\SalePositionConvert.cs" />
+    <Compile Include="DtoConverter\SaleConvert.cs" />
+    <Compile Include="DtoConverter\BeerKindConvert.cs" />
+    <Compile Include="DtoConverter\PictureConvert.cs" />
+    <Compile Include="DtoConverter\CapacityConvert.cs" />
+    <Compile Include="DtoConverter\StockPositionConvert.cs" />
+    <Compile Include="DtoConverter\TradeMarkConvert.cs" />
+    <Compile Include="DtoCreate\CreateBeerBottle.cs" />
+    <Compile Include="DtoCreate\CreateBeerEntity.cs" />
+    <Compile Include="DtoCreate\CreateBeerKind.cs" />
+    <Compile Include="DtoCreate\CreateCapacity.cs" />
+    <Compile Include="DtoCreate\CreatePicture.cs" />
+    <Compile Include="DtoCreate\CreateSale.cs" />
+    <Compile Include="DtoCreate\CreateSalePosition.cs" />
+    <Compile Include="DtoCreate\CreateStockPosition.cs" />
+    <Compile Include="DtoCreate\CreateTradeMark.cs" />
+    <Compile Include="DtoUpdate\UpdateCapacity.cs" />
+    <Compile Include="DtoUpdate\UpdatePicture.cs" />
+    <Compile Include="DtoUpdate\UpdateSale.cs" />
+    <Compile Include="DtoUpdate\UpdateSalePosition.cs" />
+    <Compile Include="DtoUpdate\UpdateStockPosition.cs" />
+    <Compile Include="DtoUpdate\UpdateTradeMark.cs" />
+    <Compile Include="DtoUpdate\UpdateBeerKind.cs" />
+    <Compile Include="DtoUpdate\UpdateBeerEntity.cs" />
+    <Compile Include="DtoUpdate\UpdateBeerBottle.cs" />
+    <Compile Include="Dto\ReadBeerEntity.cs" />
+    <Compile Include="Dto\ReadCapacity.cs" />
+    <Compile Include="Dto\ReadPicture.cs" />
+    <Compile Include="Dto\ReadSale.cs" />
+    <Compile Include="Dto\ReadSalePosition.cs" />
+    <Compile Include="Dto\ReadStockPosition.cs" />
+    <Compile Include="Dto\ReadTradeMark.cs" />
+    <Compile Include="Dto\ReadBeerKind.cs" />
+    <Compile Include="Dto\ReadBeerBottle.cs" />
+    <Compile Include="Management\BeerKindManager.cs" />
+    <Compile Include="Management\CapacityManager.cs" />
+    <Compile Include="Management\Manager.cs" />
+    <Compile Include="Management\PictureManager.cs" />
+    <Compile Include="Management\SaleManager.cs" />
+    <Compile Include="Management\SalePositionManager.cs" />
+    <Compile Include="Management\StockPositionManager.cs" />
+    <Compile Include="Management\TradeMarkManager.cs" />
+    <Compile Include="Management\BeerEntityManager.cs" />
+    <Compile Include="Management\BeerBottleManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{dc39c627-a00b-4647-a294-836ef380ac21}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{4293742f-80d7-4f26-9e28-cd0bca08f1e4}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
