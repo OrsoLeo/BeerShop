@@ -14,8 +14,26 @@ namespace AppLogic.Dto
 
         public decimal Price { get; set; }
         
-        public ReadBeerEntity BeerEntity { get; set; }
+        public int CapacityID { get; set; }
 
-        public ReadCapacity Capacity { get; set; }
+        public float Cap { get; set; }
+
+        public int BeerEntityID { get; set; }
+
+        public string BeerEntityName { get; set; }
+
+        public double BeerEntityAlcohol { get; set; }
+
+        public double BeerEntityBreadness { get; set; }
+
+        public int BeerKindID { get; set; }
+
+        public string BeerKindName { get; set; }
+
+        public int TradeMarkID { get; set; }
+
+        public string TradeMarkName { get; set; }
+
+        public string TradeMarkSpecification { get; set; }
     }
 }

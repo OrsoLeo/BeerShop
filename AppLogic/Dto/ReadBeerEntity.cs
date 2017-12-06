@@ -15,9 +15,15 @@ namespace AppLogic.Dto
         public double Alcohol { get; set; }
 
         public double Breadness { get; set; }
-        
-        public ReadBeerKind BeerKind { get; set; }
 
-        public ReadTradeMark TradeMark { get; set; }
+        public int BeerKindID { get; set; }
+
+        public string BeerKindName { get; set; }
+        
+        public int TradeMarkID { get; set; }
+
+        public string TradeMarkName { get; set; }
+
+        public string TradeMarkSpecification { get; set; }
     }
 }
