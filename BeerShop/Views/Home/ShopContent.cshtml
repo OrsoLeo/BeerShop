@@ -1,0 +1,49 @@
+﻿<div class="row flex-xl-nowrap" id="content_block">
+
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		GatAll();
+	});
+	function GatAll() {
+		$.ajax({
+			url: '/api/Stock',
+			type: 'GET',
+			dataType: 'json',
+			success: function (data) {
+				WriteResponse(data);
+			},
+			error: function (x, y, z) {
+				alert(x + '\n' + y + '\n' + z);
+			}
+		});
+	}
+	function WriteResponse(data) {
+		var strResult = "";
+		$.each(data, function (index, item) {
+			strResult += "<div class='card' style='width: 20rem; height: auto;'><img class='card-img-top' src='/BottlePictures/GuinnessOriginal.jpg'><div class='card-body'><h4 class='card-title'><p class='card-text'>"
+				+ item.TradeMarkName + "</p><p class='card-text'>" + item.BeerEntityName
+				+ "</p></h4><p class='card-text'>Описание. Потом прицеплю</p><ul class='list-group list-group-flush'><li class='list-group-item'>"
+				+ item.BeerKindName + "     " + item.Cap + "</li><li class='list-group-item'>"
+				+ item.BeerEntityBreadness + "   " + item.BeerEntityAlcohol + "</li><li class='list-group-item'>"
+				+ item.BeerBottlePrice
+				+ "</li></ul><a href='#' class='btn btn-primary'>Кинуть в корзинку</a></div></div>";
+		});
+		$("#content_block").html(strResult);
+	}
+</script>
+
+@*<div class="card" style="width: 20rem;" styl>
+	<img class="card-img-top" src="..." alt="Card image cap">
+	<div class="card-body">
+		<h4 class="card-title">Card title</h4>
+		<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item">Cras justo odio</li>
+			<li class="list-group-item">Dapibus ac facilisis in</li>
+			<li class="list-group-item">Vestibulum at eros</li>
+		</ul>
+		<a href="#" class="btn btn-primary">Go somewhere</a>
+	</div>
+</div>*@

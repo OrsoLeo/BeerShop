@@ -11,10 +11,13 @@ namespace BeerShop.Controllers
     {
         
         public ActionResult Index()
-        {
-            StockPositionManager manager = new StockPositionManager();
-            ViewBag.StockManager = manager;
-            return View(manager.GetAll());
+        {            
+            return View();
         }        
+
+        public PartialViewResult ShopContent()
+        {
+            return PartialView();
+        }
     }
 }

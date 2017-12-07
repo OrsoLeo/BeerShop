@@ -29,25 +29,17 @@
 			</div>
 			<div class="form-group">
 				<label for="editTm">TM</label>
-				<select id="editTm" class="form-control">
-					<option selected value="value">торговая марка</option>
-					<option>другая торговая марка</option>
+				<select id="editTm" class="form-control" size="1">
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="editBeer">Пиво</label>
-				<select id="editBeer" class="form-control">
-					<option selected value="value">Пивко</option>
-					<option>другое пивко</option>
-					<option>ущё пивко</option>
+				<select id="editBeer" class="form-control" size="1">
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="editCapacity">Ёмкость</label>
-				<select id="editCapacity" class="form-control">
-					<option selected value="value">0.5</option>
-					<option>1</option>
-					<option>0.33</option>
+				<select id="editCapacity" class="form-control" size="1">
 				</select>
 			</div>
 			<div class="form-group">
@@ -103,15 +95,15 @@
 
         GetAll();
 
-		$("#editBlock").click(function (event) {
-            event.preventDefault();
-            Edit();
-        });
+		//$("#editBlock").click(function (event) {
+  //          event.preventDefault();
+  //          Edit();
+  //      });
 
-        $("#addBlock").click(function (event) {
-            event.preventDefault();
-            Add();
-        });
+  //      $("#addBlock").click(function (event) {
+  //          event.preventDefault();
+  //          Add();
+  //      });
 
     });
     // Получение всех книг по ajax-запросу
@@ -129,7 +121,40 @@
             error: function (x, y, z) {
                 alert(x + '\n' + y + '\n' + z);
             }
-        });
+		});
+		$.ajax({
+			url: '/api/BeerEntity',
+			type: 'GET',
+			dataType: 'json',
+			success: function (data) {
+				WriteEntity(data);
+			},
+			error: function (x, y, z) {
+				alert(x + '\n' + y + '\n' + z);
+			}
+		});
+		$.ajax({
+			url: '/api/Capacity',
+			type: 'GET',
+			dataType: 'json',
+			success: function (data) {
+				WriteCapacity(data);
+			},
+			error: function (x, y, z) {
+				alert(x + '\n' + y + '\n' + z);
+			}
+		});
+		$.ajax({
+			url: '/api/TradeMark',
+			type: 'GET',
+			dataType: 'json',
+			success: function (data) {
+				WriteTm(data);
+			},
+			error: function (x, y, z) {
+				alert(x + '\n' + y + '\n' + z);
+			}
+		});
     }
  // Добавление новой книги
     function Add() {
@@ -197,13 +222,34 @@
     function WriteResponse(data) {
         var strResult;
 		$.each(data, function (index, item) {
-			strResult += "<tr><td>" + item.ID + "</td><td> " + item.BeerEntity.TradeMark.Name + "</td><td>" +
-			item.BeerEntity.Name + "</td><td>" + item.BeerEntity.BeerKind.Name + "</td><td>" + item.Capacity.Cap +
+			strResult += "<tr><td>" + item.ID + "</td><td> " + item.TradeMarkName + "</td><td>" +
+			item.BeerEntityName + "</td><td>" + item.BeerKindName + "</td><td>" + item.Cap +
 			"</td><td><a id='editItem' data-item='" + item.ID + "'onclick='EditItem(this);' >Редактировать</a></td>" +
             "<td><a id='delItem' data-item='" + item.ID + "' onclick='DeleteItem(this);' >Удалить</a></td></tr>";
         });
 		$("#tabBody").html(strResult);
-    }
+	}
+	function WriteEntity(data) {
+		var strResult;
+		$.each(data, function (index, item) {
+			strResult += "<option value='" + item.ID + "'>" + item.Name + "</option>";
+		});
+		$("#editBeer").html(strResult);
+	}
+	function WriteCapacity(data) {
+		var strResult;
+		$.each(data, function (index, item) {
+			strResult += "<option value='" + item.ID + "'>" + item.Cap + "</option>";
+		});
+		$("#editCapacity").html(strResult);
+	}
+	function WriteTm(data) {
+		var strResult;
+		$.each(data, function (index, item) {
+			strResult += "<option value='" + item.ID + "'>" + item.Name + "</option>";
+		});
+		$("#editTm").html(strResult);
+	}
     // обработчик удаления
     function DeleteItem(el) {
 
@@ -224,9 +270,9 @@
             $("#addBlock").css('display', 'none');
 			$("#editBlock").css('display', 'block');
 			$("#editId").val(item.ID);
-			$("#editTm").val(item.TradeMark.Name);
-			$("#editBeer").val(item.BeerEntity.Name);
-            $("#editCapacity").val(item.Capacity.Cap);
+			$("#editTm").val(item.TradeMarkName);
+			$("#editBeer").val(item.BeerEntityName);
+            $("#editCapacity").val(item.Cap);
 			$("#editDate").val(item.DateOfSpill);
 			$("#editPrice").val(item.Price);
         }

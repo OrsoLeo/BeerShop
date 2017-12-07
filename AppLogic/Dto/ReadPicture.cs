@@ -12,6 +12,6 @@ namespace AppLogic.Dto
 
         public string Path { get; set; }
 
-        public ReadBeerBottle BeerBottle { get; set; }
+        public int BeerBottleID { get; set; }
     }
 }
