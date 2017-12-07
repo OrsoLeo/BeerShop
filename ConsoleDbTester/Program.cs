@@ -14,11 +14,14 @@ namespace ConsoleDbTester
     {
         static void Main(string[] args)
         {
+            Manager manager = new Manager();
+            CreatePicture item = new CreatePicture { Path = "/BottlePictures/GuinnessOriginal.jpg", BeerBottleId = 10 };
+            CreatePicture item1 = new CreatePicture { Path = "/BottlePictures/GuinnessOriginal.jpg", BeerBottleId = 11 };
+            CreatePicture item2 = new CreatePicture { Path = "/BottlePictures/GuinnessOriginal.jpg", BeerBottleId = 12 };
+            manager.Pictures.Add(item);
+            manager.Pictures.Add(item1);
+            manager.Pictures.Add(item2);
 
-            Context context = new Context();
-            var item = context.BeerBottles.Find(34);
-            context.BeerBottles.Remove(item);
-            context.SaveChanges();
             ////BeerShopDb context = new BeerShopDb();
 
             //var collection = context.StockPositions.ToList();
@@ -60,7 +63,7 @@ namespace ConsoleDbTester
             //    Console.WriteLine($"{item.ID} {item.BeerEntity.TradeMark.Name} {item.BeerEntity.Name} {item.BeerEntity.BeerKind.Name} {item.Capacity.Cap} {item.Price}");
             //}
 
-           
+
             //Console.WriteLine(collection.Count);
             //Console.WriteLine($"Удаление {(manager.Remove(35)).BeerEntity.Name}");
             //Console.WriteLine();

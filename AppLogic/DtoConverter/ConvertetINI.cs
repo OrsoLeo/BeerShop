@@ -101,6 +101,8 @@ namespace AppLogic.DtoConverter
                     .ForMember("TradeMarkID", opt => opt.MapFrom(c => c.BeerBottle.BeerEntity.TradeMark.ID))
                     .ForMember("TradeMarkName", opt => opt.MapFrom(c => c.BeerBottle.BeerEntity.TradeMark.Name))
                     .ForMember("TradeMarkSpecification", opt => opt.MapFrom(c => c.BeerBottle.BeerEntity.TradeMark.Specification));
+                    //.ForMember("PictureID", opt => opt.MapFrom(c => (new EfPictureRepository(context)).GetAll().Where(x => x.BeerBottle.ID == c.ID).First().ID))//c.BeerBottle.Pictures.First().ID))
+                    //.ForMember("PicturePath", opt => opt.MapFrom(c => (new EfPictureRepository(context)).GetAll().Where(x => x.BeerBottle.ID == c.ID).First().Path));
 
                 cfg.CreateMap<CreateTradeMark, TradeMark>();
                 cfg.CreateMap<UpdateTradeMark, TradeMark>();

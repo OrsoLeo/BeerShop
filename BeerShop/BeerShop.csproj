@@ -164,6 +164,7 @@
     <Compile Include="Controllers\Api\BeerKindController.cs" />
     <Compile Include="Controllers\Api\CapacityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomeMenuController.cs" />
     <Compile Include="Controllers\IntendantController.cs" />
     <Compile Include="Controllers\IntendantMenuController.cs" />
     <Compile Include="Controllers\Api\PictureController.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BottlePictures\GuinnessOriginal.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -226,9 +228,10 @@
     <Content Include="Views\Intendant\Index.cshtml" />
     <Content Include="Views\IntendantMenu\IntendantMenu.cshtml" />
     <Content Include="Views\Intendant\GetTable.cshtml" />
+    <Content Include="Views\HomeMenu\HomeMenu.cshtml" />
+    <Content Include="Views\Home\ShopContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\BottlePictures\" />
     <Folder Include="App_Data\TMPIctures\" />
     <Folder Include="Models\" />
   </ItemGroup>
